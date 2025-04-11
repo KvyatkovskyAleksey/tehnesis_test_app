@@ -1,0 +1,11 @@
+[project]
+name = "tehnesis-test-app"
+version = "0.1.0"
+description = "Tестовое задание для Технезис"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiogram>=3.19.0",
+    "pandas>=2.2.3",
+    "python-dotenv>=1.1.0",
+]
