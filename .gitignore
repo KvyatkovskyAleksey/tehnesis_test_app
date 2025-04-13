@@ -1,3 +1,5 @@
 .venv
 .env
 .idea
+/src/bot/browser_data/
+/src/bot/bot_data.db
