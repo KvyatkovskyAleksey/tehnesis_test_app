@@ -1,4 +1,5 @@
 from patchright.async_api import Playwright, async_playwright, Browser, Page
+from pyvirtualdisplay import Display
 
 
 class BrowserManager:
@@ -6,8 +7,11 @@ class BrowserManager:
         self.playwright: Playwright | None = None
         self.browser: Browser | None = None
         self.page: Page | None = None
+        self.display: Display | None = None
 
     async def start(self):
+        self.display = Display(visible=False, size=(1920, 1080))
+        self.display.start()
         self.playwright = await async_playwright().start()
         self.browser = await self.playwright.chromium.launch_persistent_context(
             user_data_dir="./browser_data",
@@ -22,6 +26,7 @@ class BrowserManager:
             await self.browser.close()
         if self.playwright:
             await self.playwright.stop()
+        self.display.stop()
 
     async def get_page(self) -> Page:
         if not self.page:
